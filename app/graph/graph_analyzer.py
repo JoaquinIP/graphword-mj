@@ -41,7 +41,7 @@ class GraphAnalyzer:
             distribution[deg] = distribution.get(deg, 0) + 1
         return distribution
     
-    def maximum_distance_among_all(self, limit: Optional[int] = None) -> (int, List[str]):
+    def maximum_distance_among_all(self, limit: Optional[int] = None) -> (int, List[str]): # type: ignore
         """
         Retorna (dist, path) donde 'dist' es el número de aristas del
         camino simple más largo en TODO el grafo, y 'path' es la secuencia
@@ -71,7 +71,7 @@ class GraphAnalyzer:
         best_path_str = [n.word for n in best_path_nodes]
         return best_dist, best_path_str
 
-    def maximum_distance_between(self, source: str, target: str, limit: Optional[int] = None) -> (int, List[str]):
+    def maximum_distance_between(self, source: str, target: str, limit: Optional[int] = None) -> (int, List[str]): # type: ignore
         """
         Retorna (dist, path) del camino simple más largo entre 'source' y 'target' (strings),
         sin ciclos y con longitud en aristas <= limit (si se define).
