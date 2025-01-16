@@ -55,15 +55,29 @@ jobs:
       shell: bash
       working-directory: ./terraform
       run: |
-        # Forzamos salida sin color y si falla, devolvemos vacío
-        DNS=$(terraform output -no-color -raw ec2_public_dns 2>/dev/null || echo "")
-        echo "::debug:: DNS antes de limpiar => $DNS"
+        # Obtenemos la salida normal (no-raw) sin color.
+        # 'terraform output -no-color ec2_public_dns' típicamente imprime algo como:
+        # ec2_public_dns = "ec2-3-92-227-241.compute-1.amazonaws.com"
+        DNS_LINE=$(terraform output -no-color ec2_public_dns 2>/dev/null || echo "")
+        echo "::debug::DNS_LINE => $DNS_LINE"
 
-        # Quitamos caracteres no ASCII ni imprimibles (incluyendo “╷”, etc.)
-        DNS_CLEAN=$(echo "$DNS" | tr -dc '[:print:]')
+        # Extraemos la parte después del '=' y removemos comillas si las hay
+        # Ejemplo: 'ec2_public_dns = "ec2-3-92-227-241.compute-1.amazonaws.com"'
+        # Se quedaría en: "ec2-3-92-227-241.compute-1.amazonaws.com"
+        # Y luego removemos comillas, espacios y saltos de línea
+        DNS_CLEAN=$(echo "$DNS_LINE" | sed -n 's/.*=//p' | sed 's/"//g; s/^ *//; s/ *$//')
 
-        echo "::debug:: DNS después de limpiar => $DNS_CLEAN"
+        echo "::debug::DNS_CLEAN => $DNS_CLEAN"
+
+        # Quitamos cualquier carácter no imprimible por si acaso
+        DNS_CLEAN=$(echo "$DNS_CLEAN" | tr -dc '[:print:]')
+        # Hacemos trim final
+        DNS_CLEAN=$(echo "$DNS_CLEAN" | xargs)
+
+        echo "::debug::DNS_CLEAN final => $DNS_CLEAN"
+
         echo "ec2url=$DNS_CLEAN" >> "$GITHUB_OUTPUT"
+
 
 
     - name: Print DNS
