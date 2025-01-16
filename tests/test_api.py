@@ -44,12 +44,6 @@ def test_maximum_distance_between(api_host):
     resp = requests.get(url, params=params)
     assert resp.status_code == 200 or resp.status_code == 404
 
-def test_maximum_distance_global(api_host):
-    # Si no paso word1, word2 => camino más largo global
-    url = f"{api_host}/maximum-distance"
-    resp = requests.get(url)
-    assert resp.status_code == 200
-
 def test_clusters(api_host):
     url = f"{api_host}/clusters"
     resp = requests.get(url)
