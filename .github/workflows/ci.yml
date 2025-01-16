@@ -46,7 +46,7 @@ jobs:
 
     # 6. Terraform Apply
     - name: Terraform Apply
-      run: terraform apply -auto-approve || true
+      run: terraform apply -auto-approve
       working-directory: ./terraform
 
     # 7. Capturar ec2_public_dns
@@ -80,3 +80,33 @@ jobs:
     - name: Terraform Destroy
       if: always()
       run: terraform destroy -auto-approve
+
+  destroy-on-failure:
+    # Este job depende del anterior
+    needs: [build-deploy-test]
+    runs-on: ubuntu-latest
+    # Se ejecuta solo si 'build-deploy-test' falla
+    if: failure()
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+        aws-region: us-east-1
+
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./terraform
+
+    - name: Terraform Destroy
+      run: terraform destroy -auto-approve
+      working-directory: ./terraform
