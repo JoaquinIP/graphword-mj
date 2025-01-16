@@ -7,6 +7,7 @@ accumulating
 accumulation
 achievements
 acknowledged
+acknowledges
 acquaintance
 acquiescence
 acquirements
@@ -20,6 +21,7 @@ agicultooral
 amphitheatre
 annihilation
 announcement
+annunciation
 anticipating
 anticipation
 apostrophise
@@ -34,6 +36,7 @@ architecture
 aristocratic
 arrangements
 artificially
+artistically
 ascertaining
 assassinated
 asseveration
@@ -53,6 +56,7 @@ cauliflowers
 characterise
 cheerfulness
 chitterlings
+christenings
 christianity
 circuitously
 circumstance
@@ -84,6 +88,7 @@ confirmation
 confiscation
 conformation
 congratulate
+consecration
 consequences
 consequently
 conservation
@@ -101,6 +106,7 @@ contemptuous
 continuation
 continuously
 contradicted
+contribution
 contrivances
 convalescent
 conveniently
@@ -122,6 +128,7 @@ disagreeable
 disappointed
 disapproving
 disconcerted
+disconnected
 disconsolate
 discontented
 discouraging
@@ -142,6 +149,9 @@ eavesdropper
 eccentricity
 ecclesiastic
 embarrassing
+embellishing
+embroideress
+embroideries
 embroidering
 emphatically
 encountering
@@ -155,6 +165,7 @@ estrangement
 exaggeration
 exasperation
 exclamations
+exhilarating
 exhilaration
 exhortations
 expectations
@@ -164,6 +175,7 @@ exterminated
 extinguished
 extinguisher
 familiarised
+fascinations
 felicitously
 fermentation
 forensically
@@ -243,6 +255,7 @@ irresistible
 irresolutely
 irresolution
 irritability
+johannisberg
 lamentations
 lifelessness
 lighthearted
@@ -255,12 +268,14 @@ marvellously
 mechanically
 metaphysical
 methodically
+misdemeanors
 modification
 monotonously
 mountaineers
 multifarious
 multiplicity
 necessitated
+neighborhood
 neighbouring
 nevertheless
 notabilities
@@ -272,15 +287,19 @@ organization
 orientalists
 ostentatious
 outnumbering
+outspreading
+outstretched
 overpowering
 overshadowed
 overstepping
 overwhelming
 paradisiacal
+parishioners
 participated
 particularly
 passionately
 peacefullest
+pennsylvania
 performances
 periodically
 perpetuating
@@ -294,6 +313,7 @@ politenesses
 portentously
 postponement
 precipitated
+predecessors
 predilection
 preparations
 presbyterian
@@ -305,6 +325,7 @@ professional
 proofreading
 propensities
 proscription
+proverbially
 purification
 questionable
 reassurances
@@ -325,6 +346,7 @@ representing
 requirements
 resoundingly
 respectfully
+respectively
 restlessness
 restoratives
 restrictions
@@ -344,6 +366,7 @@ significance
 solicitation
 speculations
 sportiveness
+standardized
 stipulations
 strawberries
 strengthened
@@ -366,11 +389,13 @@ thankfulness
 thoroughfare
 thoughtfully
 thunderstorm
+traditionary
 traitorously
 tranquillise
 tranquillity
 transactions
 transcendent
+transforming
 transparency
 transversely
 triumphantly
@@ -378,6 +403,7 @@ trustfulness
 unaccustomed
 unacquainted
 unattainable
+unattractive
 unbrutalised
 unchangeable
 undiscovered
@@ -385,9 +411,14 @@ unencumbered
 unexpectedly
 unfathomable
 unfavourable
+unforgetable
+unfrequented
 unfrequently
+ungovernable
 unhandsomely
 uninterested
+unmercifully
+unmistakable
 unornamental
 unparalleled
 unpopularity
@@ -405,6 +436,7 @@ victoriously
 vociferating
 warwickshire
 watchfulness
+westmoreland
 whortleberry
 wineglassful
 wretchedness

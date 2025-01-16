@@ -6,7 +6,7 @@ import sys
 # Añadir el directorio raíz al sys.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from app.word_manager import WordManager
+from word_manager import WordManager
 from word_sources.local_dictionary_word_source import LocalDictionaryWordSource
 from word_sources.project_gutenberg_word_source import ProjectGutenbergWordSource
 from word_sources.exceptions import WordSourceException

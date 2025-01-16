@@ -1,5 +1,6 @@
 abandonment
 abstraction
+acceptances
 acceptation
 accessories
 acclamation
@@ -46,6 +47,7 @@ aristocrats
 arrangement
 ascertained
 aspirations
+assassinate
 assemblages
 assemblance
 assiduously
@@ -55,15 +57,18 @@ association
 astonishing
 atheistical
 atmospheric
+attachments
 attainments
 attentively
 attractions
 authorities
 balustrades
 barbarously
+battlefield
 beautifully
 beautifying
 belligerent
+benediction
 benefactors
 beneficence
 benevolence
@@ -73,6 +78,7 @@ blasphemous
 blindnesses
 blunderbuss
 botheration
+brandenburg
 brilliantly
 brotherhood
 calculating
@@ -82,6 +88,8 @@ caressingly
 catastrophe
 cauliflower
 celebration
+celebrities
+ceremonious
 certificate
 champignons
 cheesecakes
@@ -92,8 +100,10 @@ coincidence
 collectedly
 collections
 combination
+combustible
 comfortable
 comfortless
+commemorate
 commiserate
 communicate
 comparative
@@ -117,6 +127,7 @@ conclusions
 conditioned
 confections
 conferences
+confessions
 confidences
 confidently
 confidingly
@@ -161,6 +172,7 @@ controversy
 convenience
 convulsions
 conwictions
+copyrighted
 corporation
 correctness
 corroborate
@@ -174,6 +186,7 @@ cranberries
 credentials
 crestfallen
 criminality
+crucifixion
 culminating
 culpability
 cultivating
@@ -193,6 +206,7 @@ deprecatory
 deprivation
 descendants
 description
+descriptive
 designation
 desperately
 desperation
@@ -230,6 +244,7 @@ disinclined
 disparaging
 displeasure
 disposition
+disregarded
 dissociated
 distasteful
 distinction
@@ -243,12 +258,15 @@ distributed
 distributor
 disturbance
 diversified
+domineering
 downloading
 drawbridges
 drunkenness
 earnestness
 earthenware
 educational
+effectually
+elaborately
 electricity
 emancipated
 emasculated
@@ -267,6 +285,7 @@ encouraging
 endeavoured
 endorsement
 enlightened
+enterprises
 entertained
 enticements
 enunciation
@@ -307,6 +326,7 @@ facilitated
 familiarity
 fascinating
 fascination
+festivities
 floundering
 flourishing
 fluctuating
@@ -320,6 +340,7 @@ fortnightly
 fortunately
 foundations
 francatelli
+frantically
 frenchwoman
 friendliest
 frightening
@@ -336,6 +357,7 @@ gloweringly
 governments
 grandfather
 grandmammas
+grandmother
 gravestones
 greatnesses
 grenouilles
@@ -354,6 +376,7 @@ hyphenation
 ignominious
 illuminated
 illustrated
+illustrates
 illustrious
 imagination
 imaginative
@@ -386,6 +409,7 @@ indignantly
 indignation
 individuals
 indivisible
+indulgences
 industrious
 ineffectual
 inestimable
@@ -435,10 +459,13 @@ intervening
 intimidated
 intolerable
 intonations
+intoxicants
 intoxicated
+intractable
 intricacies
 introducing
 invigorated
+invitations
 involuntary
 irradiation
 irreligious
@@ -466,6 +493,7 @@ matrimonial
 measurement
 meditations
 merchantman
+mischievous
 misdirected
 misfortunes
 mississippi
@@ -481,10 +509,12 @@ negligently
 negotiation
 nervousness
 nightingale
+noiselessly
 nonsensical
 nourishment
 obligations
 obliterated
+observances
 observantly
 observation
 observatory
@@ -557,6 +587,7 @@ preoccupied
 preparation
 preparatory
 presumption
+presumptive
 pretentious
 prevaricate
 prewaricate
@@ -579,7 +610,9 @@ prosecution
 protectress
 protraction
 provocation
+provokingly
 publication
+punctilious
 punctuation
 purposeless
 rapturously
@@ -616,7 +649,9 @@ reservation
 resignation
 resolutions
 respectable
+respiration
 responsible
+restitution
 restoration
 restorative
 restraining
@@ -634,6 +669,7 @@ sensibility
 sentimental
 seriousness
 serviceable
+settlements
 shakespeare
 shouldering
 significant
@@ -650,6 +686,7 @@ steadfastly
 stimulating
 straightway
 strenuously
+subordinate
 subornation
 subsistence
 substantial
@@ -672,6 +709,7 @@ susceptible
 susquehanna
 sweetbreads
 switzerland
+sympathetic
 sympathised
 teaspoonful
 temperament
@@ -679,17 +717,21 @@ temperature
 temporarily
 termination
 terrestrial
+tessellated
 testimonies
 thenceforth
 theological
 thereabouts
 thicknesses
+thiergarten
 threatening
 townspeople
 traffickers
 transaction
 transcriber
 transferred
+transformed
+translucent
 transparent
 transported
 treacherous
@@ -701,8 +743,10 @@ triumvirate
 troublesome
 trustworthy
 turbulently
+unadvisable
 unalterable
 unanimously
+unannounced
 unavoidable
 unbelieving
 unceasingly
@@ -754,6 +798,7 @@ vacillating
 vindicating
 vindication
 voluntarily
+volunteered
 waggonloads
 westminster
 westmorland

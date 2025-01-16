@@ -33,6 +33,7 @@ beg
 bid
 big
 bit
+bon
 bow
 box
 boy
@@ -48,6 +49,8 @@ cat
 cly
 cob
 cod
+con
+cos
 cot
 cow
 cox
@@ -76,6 +79,7 @@ ear
 eat
 ebb
 egg
+ego
 ein
 eke
 end
@@ -103,6 +107,7 @@ for
 fox
 fro
 fry
+fun
 fur
 gag
 gay
@@ -184,6 +189,7 @@ may
 men
 met
 mid
+mio
 mix
 mob
 mrs
@@ -221,6 +227,7 @@ par
 pat
 pay
 pea
+peg
 pen
 pet
 pic
@@ -243,6 +250,7 @@ rev
 rid
 rig
 rim
+rio
 rip
 rob
 rod
@@ -255,6 +263,7 @@ rum
 run
 rye
 sad
+sam
 san
 sap
 sat
@@ -275,6 +284,7 @@ sit
 six
 sky
 sly
+sma
 sob
 sod
 son
@@ -312,8 +322,11 @@ uri
 use
 ust
 utf
+van
 vii
 vin
+von
+vos
 vow
 wan
 war
@@ -321,6 +334,7 @@ was
 wax
 way
 web
+wee
 wet
 who
 why
