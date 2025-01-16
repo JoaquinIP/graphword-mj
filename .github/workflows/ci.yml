@@ -1,0 +1,75 @@
+# .github/workflows/ci.yml
+
+name: CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-deploy-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    # 1. Configurar credenciales AWS
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+        aws-region: us-east-1
+
+    # 2. Instalar Terraform
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    # 3. Terraform Init
+    - name: Terraform Init
+      run: terraform init
+
+    # 4. Terraform Validate
+    - name: Terraform Validate
+      run: terraform validate
+
+    # 5. Terraform Plan
+    - name: Terraform Plan
+      run: terraform plan
+
+    # 6. Terraform Apply
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+
+    # 7. Capturar ec2_public_dns
+    - name: Capture ec2_public_dns
+      id: dns
+      run: echo "::set-output name=ec2url::$(terraform output -raw ec2_public_dns)"
+
+    - name: Print DNS
+      run: echo "EC2 DNS = ${{ steps.dns.outputs.ec2url }}"
+
+    # 8. Instalar Python y dependencias
+    - name: Install Python Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+        pip3 install --upgrade pip
+        pip3 install -r requirements.txt
+        pip3 install pytest requests
+
+    # 9. Ejecutar pytest contra la API real
+    - name: Run Tests
+      env:
+        API_HOST: ${{ steps.dns.outputs.ec2url }}
+      run: |
+        pytest --maxfail=1 --disable-warnings -v
+
+    # 10. Terraform Destroy (para no dejar la infra encendida)
+    - name: Terraform Destroy
+      if: always()
+      run: terraform destroy -auto-approve
