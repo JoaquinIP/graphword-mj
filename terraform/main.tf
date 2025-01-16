@@ -5,20 +5,20 @@ provider "aws" {
   region     = "us-east-1"
 }
 
-variable "key_name" {
-  description = "Nombre del Key Pair para SSH"
-  type        = string
-}
+#variable "key_name" {
+#  description = "Nombre del Key Pair para SSH"
+#  type        = string
+#}
 
-variable "public_key_path" {
-  description = "Ruta a la llave pública SSH"
-  type        = string
-}
+#variable "public_key_path" {
+#  description = "Ruta a la llave pública SSH"
+#  type        = string
+#}
 
-resource "aws_key_pair" "deployer" {
-  key_name   = var.key_name
-  public_key = file(var.public_key_path)
-}
+#resource "aws_key_pair" "deployer" {
+#  key_name   = var.key_name
+#  public_key = file(var.public_key_path)
+#}
 
 data "aws_vpc" "default" {
   default = true
@@ -78,7 +78,7 @@ resource "aws_instance" "graph_ec2" {
   instance_type          = "t2.micro"
   subnet_id              = tolist(data.aws_subnets.default.ids)[0]
   vpc_security_group_ids = [aws_security_group.graph_sg.id]
-  key_name               = aws_key_pair.deployer.key_name
+#  key_name               = aws_key_pair.deployer.key_name
 
   associate_public_ip_address = true  # IP pública dinámica
 
