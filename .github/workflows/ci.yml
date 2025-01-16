@@ -34,12 +34,6 @@ jobs:
       run: terraform init
       working-directory: ./terraform
 
-    - name: Terraform Destroy (begin)
-      # Intentamos destruir infra previa con la misma config
-      # "|| true" para que no falle el job si no hay nada que destruir
-      run: terraform destroy -auto-approve || true
-      working-directory: ./terraform
-
     # 4. Terraform Validate
     - name: Terraform Validate
       run: terraform validate
