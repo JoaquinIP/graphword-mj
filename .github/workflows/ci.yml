@@ -55,22 +55,28 @@ jobs:
       working-directory: ./terraform
       shell: bash
       run: |
-        # Guardamos la salida en dns_temp.txt
         terraform output -no-color ec2_public_dns > dns_temp.txt 2>/dev/null || true
         
         echo "::debug::File dns_temp.txt =>"
         cat dns_temp.txt | sed 's/^/::debug::/'
 
-        DNS_LINE=$(cat dns_temp.txt)
-        # Extrae la subcadena que coincida con ec2-....amazonaws.com
-        DNS_CLEAN=$(echo "$DNS_LINE" | grep -oE 'ec2-[^ ]*\.amazonaws\.com')
+        # grep -oE encuentra TODAS las subcadenas que cumplan 'ec2-...amazonaws.com'
+        # head -n1 toma solo la PRIMERA, evitando que se dupliquen con %0A
+        DNS_CLEAN=$(
+        grep -oE 'ec2-[^ ]*\.amazonaws\.com' dns_temp.txt \
+        | head -n1
+        )
 
-        echo "::debug::DNS_CLEAN=$DNS_CLEAN"
+        # Limpieza extra: quitar caracteres no ASCII, espacios
+        DNS_CLEAN=$(echo "$DNS_CLEAN" | tr -dc '[:print:]' | xargs)
 
-        # En lugar de echo "ec2url=$DNS_CLEAN" >> $GITHUB_OUTPUT, usamos multiline:
+        # Usar la sintaxis multiline para $GITHUB_OUTPUT
         echo "ec2url<<EOF" >> "$GITHUB_OUTPUT"
         echo "$DNS_CLEAN" >> "$GITHUB_OUTPUT"
         echo "EOF" >> "$GITHUB_OUTPUT"
+
+        echo "::debug::DNS_CLEAN => $DNS_CLEAN"
+
 
 
     - name: Print DNS
