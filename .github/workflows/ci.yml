@@ -52,26 +52,30 @@ jobs:
     # 7. Capturar ec2_public_dns
     - name: Capture ec2_public_dns
       id: dns
-      shell: bash
       working-directory: ./terraform
+      shell: bash --noprofile --norc
       run: |
-        # Obtenemos la salida (sin color), que vendrá como una línea con comillas
-        # Ej: "ec2-50-17-118-117.compute-1.amazonaws.com"
-        DNS_LINE=$(terraform output -no-color ec2_public_dns 2>/dev/null || echo "")
-        echo "::debug::DNS_LINE => $DNS_LINE"
+        # Sacamos la salida normal (sin color), la volcamos a un archivo
+        terraform output -no-color ec2_public_dns > dns_temp.txt 2>/dev/null || true
+        
+        # Mostramos para debug
+        echo "::debug::File dns_temp.txt ="
+        cat dns_temp.txt | sed 's/^/::debug::/'
 
-        # Eliminamos comillas iniciales y finales
+        # Leemos la línea de dns_temp.txt, que debería ser algo como
+        # "ec2-18-235-248-213.compute-1.amazonaws.com"
+        DNS_LINE=$(cat dns_temp.txt)
+        
+        # Eliminamos comillas iniciales y finales, en caso de que aparezcan
         DNS_CLEAN=$(echo "$DNS_LINE" | sed 's/^"//; s/"$//')
-
-        # Eliminamos caracteres no imprimibles, por si acaso
+        
+        # Quitamos caracteres raros y espacios
         DNS_CLEAN=$(echo "$DNS_CLEAN" | tr -dc '[:print:]' | xargs)
-
-        echo "::debug::DNS_CLEAN => $DNS_CLEAN"
-
-        # Guardamos la var en $GITHUB_OUTPUT
+        
+        echo "::debug::DNS_CLEAN=$DNS_CLEAN"
+        
+        # Finalmente guardamos en $GITHUB_OUTPUT
         echo "ec2url=$DNS_CLEAN" >> "$GITHUB_OUTPUT"
-
-
 
 
     - name: Print DNS
