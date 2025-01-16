@@ -55,20 +55,23 @@ jobs:
       working-directory: ./terraform
       shell: bash
       run: |
-        # Ejecutamos un subcomando con bash --noprofile --norc
-        bash --noprofile --norc -c 'terraform output -no-color ec2_public_dns > dns_temp.txt 2>/dev/null || true'
+        # Guardamos la salida en dns_temp.txt
+        terraform output -no-color ec2_public_dns > dns_temp.txt || true
 
-        echo "::debug::Contents of dns_temp.txt =>"
+        echo "::debug::File dns_temp.txt =>"
         cat dns_temp.txt | sed 's/^/::debug::/'
 
         DNS_LINE=$(cat dns_temp.txt)
-        # Remove comillas inicial y final
-        DNS_CLEAN=$(echo "$DNS_LINE" | sed 's/^"//; s/"$//')
-        DNS_CLEAN=$(echo "$DNS_CLEAN" | tr -dc '[:print:]' | xargs)
 
+        # Extraemos solo la parte con 'ec2-...' hasta '.amazonaws.com' 
+        # ignorando todo lo demás.
+        DNS_CLEAN=$(echo "$DNS_LINE" | grep -oE 'ec2-[^ ]*\.amazonaws\.com')
+
+        # Si no encontró nada, DNS_CLEAN estará vacío.
         echo "::debug::DNS_CLEAN => $DNS_CLEAN"
 
         echo "ec2url=$DNS_CLEAN" >> "$GITHUB_OUTPUT"
+
 
 
 
