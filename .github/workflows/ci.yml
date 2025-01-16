@@ -52,7 +52,10 @@ jobs:
     # 7. Capturar ec2_public_dns
     - name: Capture ec2_public_dns
       id: dns
-      run: echo "::set-output name=ec2url::$(terraform output -raw ec2_public_dns)"
+      shell: bash
+      run: |
+        DNS=$(terraform output -raw ec2_public_dns)
+        echo "ec2url=$DNS" >> "$GITHUB_OUTPUT"
 
     - name: Print DNS
       run: echo "EC2 DNS = ${{ steps.dns.outputs.ec2url }}"
