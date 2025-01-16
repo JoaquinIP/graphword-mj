@@ -53,9 +53,18 @@ jobs:
     - name: Capture ec2_public_dns
       id: dns
       shell: bash
+      working-directory: ./terraform
       run: |
-        DNS=$(terraform output -raw ec2_public_dns)
-        echo "ec2url=$DNS" >> "$GITHUB_OUTPUT"
+        # Forzamos salida sin color y si falla, devolvemos vacío
+        DNS=$(terraform output -no-color -raw ec2_public_dns 2>/dev/null || echo "")
+        echo "::debug:: DNS antes de limpiar => $DNS"
+
+        # Quitamos caracteres no ASCII ni imprimibles (incluyendo “╷”, etc.)
+        DNS_CLEAN=$(echo "$DNS" | tr -dc '[:print:]')
+
+        echo "::debug:: DNS después de limpiar => $DNS_CLEAN"
+        echo "ec2url=$DNS_CLEAN" >> "$GITHUB_OUTPUT"
+
 
     - name: Print DNS
       run: echo "EC2 DNS = ${{ steps.dns.outputs.ec2url }}"
