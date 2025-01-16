@@ -45,8 +45,8 @@ jobs:
       working-directory: ./terraform
 
     # 6. Terraform Apply
-    - name: Terraform Apply || true
-      run: terraform apply -auto-approve
+    - name: Terraform Apply
+      run: terraform apply -auto-approve || true
       working-directory: ./terraform
 
     # 7. Capturar ec2_public_dns
