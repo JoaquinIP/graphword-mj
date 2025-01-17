@@ -74,13 +74,13 @@ resource "aws_security_group" "graph_sg" {
 }
 
 resource "aws_instance" "graph_ec2" {
-  ami                    = "ami-0e731c8a588258d0d"  # Verifica que este AMI existe en us-east-1
+  ami                    = "ami-0e731c8a588258d0d"
   instance_type          = "t2.micro"
   subnet_id              = tolist(data.aws_subnets.default.ids)[0]
   vpc_security_group_ids = [aws_security_group.graph_sg.id]
 #  key_name               = aws_key_pair.deployer.key_name
 
-  associate_public_ip_address = true  # IP pública dinámica
+  associate_public_ip_address = true
 
   user_data = <<-EOF
     #!/bin/bash
@@ -164,7 +164,6 @@ resource "aws_apigatewayv2_integration" "http_proxy" {
   api_id             = aws_apigatewayv2_api.graph_api.id
   integration_type   = "HTTP_PROXY"
 
-  # (2) Sin barra inclinada final
   integration_uri    = "http://${aws_instance.graph_ec2.public_dns}:80"
   connection_type    = "INTERNET"
   integration_method = "ANY"

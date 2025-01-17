@@ -1,5 +1,3 @@
-# graph/node.py
-
 class Node:
     def __init__(self, word: str):
         self.word = word

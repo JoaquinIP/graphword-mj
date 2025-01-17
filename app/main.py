@@ -1,9 +1,6 @@
-# main.py
-
 import os
 import sys
 
-# Añadir el directorio raíz al sys.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from word_manager import WordManager
@@ -13,31 +10,30 @@ from word_sources.exceptions import WordSourceException
 from config import DATA_LAKE_PATH, DATA_MART_PATH
 
 def main():
-    print("Seleccione la fuente de datos:")
-    print("1. Archivo de diccionario local")
-    print("2. Libro de Project Gutenberg")
-    option = input("Ingrese 1 o 2: ")
+    print("Select the data source:")
+    print("1. Local dictionary file")
+    print("2. Project Gutenberg Book")
+    option = input("Enter 1 or 2: ")
 
     try:
         if option == '1':
-            file_path = input("Ingrese la ruta al archivo de diccionario local: ")
+            file_path = input("Write the path to the local dictionary file: ")
             word_source = LocalDictionaryWordSource(file_path)
         elif option == '2':
-            book_url = input("Ingrese la URL del libro de Project Gutenberg: ")
+            book_url = input("Write the URL of the Project Gutenberg book: ")
             word_source = ProjectGutenbergWordSource(book_url)
         else:
-            print("Opción no válida")
+            print("Invalid option")
             return
 
         word_manager = WordManager(word_source)
         new_words_count = word_manager.process_words(DATA_LAKE_PATH, DATA_MART_PATH)
-        print("Procesamiento completado.")
+        print("Processing completed.")
         
-        # Mostrar cuántas palabras nuevas se añadieron
         total_new_words = sum(new_words_count.values())
-        print(f"Número total de palabras nuevas añadidas: {total_new_words}")
+        print(f"Total number of new words added: {total_new_words}")
         for length, count in sorted(new_words_count.items()):
-            print(f"Longitud {length}: {count} palabras nuevas")
+            print(f"Length {length}: {count} new words")
     except (WordSourceException, ValueError, IOError) as e:
         print(f"Error: {e}")
 

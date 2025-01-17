@@ -1,5 +1,3 @@
-# word_sources/project_gutenberg_word_source.py
-
 import os
 import re
 import requests
@@ -10,7 +8,7 @@ from .exceptions import WordSourceException
 class ProjectGutenbergWordSource(WordSource):
     def __init__(self, book_url: str):
         if not book_url:
-            raise ValueError("La URL no puede estar vacía.")
+            raise ValueError("URL cannot be empty.")
         self.book_url = book_url
         self.raw_content = ""
         self.book_id = self._extract_book_id()
@@ -21,7 +19,7 @@ class ProjectGutenbergWordSource(WordSource):
         words_by_length = {}
         for w in all_words:
             w_lower = w.lower()
-            if len(w_lower) >= 3:  # Ej: ignorar <3 letras
+            if len(w_lower) >= 3:
                 words_by_length.setdefault(len(w_lower), set()).add(w_lower)
         return words_by_length
 
@@ -34,7 +32,7 @@ class ProjectGutenbergWordSource(WordSource):
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(self.raw_content)
         except OSError as e:
-            raise WordSourceException(f"Error guardando en datalake: {e}")
+            raise WordSourceException(f"Error saving to datalake: {e}")
 
     def _download_book(self):
         try:
@@ -42,7 +40,7 @@ class ProjectGutenbergWordSource(WordSource):
             resp.raise_for_status()
             self.raw_content = resp.text.lower()
         except requests.RequestException as e:
-            raise WordSourceException(f"Error descargando libro de PG: {e}")
+            raise WordSourceException(f"Error downloading PG book: {e}")
 
     def _extract_book_id(self):
         match = re.search(r"/(\d+)/?", self.book_url)

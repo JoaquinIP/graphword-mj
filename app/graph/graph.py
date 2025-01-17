@@ -1,5 +1,3 @@
-# graph/graph.py
-
 import networkx as nx
 from .node import Node
 

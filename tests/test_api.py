@@ -1,35 +1,27 @@
-# tests/test_api.py
-
 import os
 import pytest
 import requests
 
 @pytest.fixture(scope="session")
 def api_host():
-    """
-    Lee la variable de entorno 'API_HOST' que contendrá el DNS público
-    de la instancia EC2 (ej: ec2-3-90-10-123.compute-1.amazonaws.com).
-    """
     host = os.environ.get("API_HOST")
     if not host:
-        pytest.fail("No se definió la variable de entorno 'API_HOST'.")
-    # Asumimos que la API corre en puerto 80
+        pytest.fail("Environment variable 'API_HOST' was not defined.")
     return f"http://{host}"
 
 def test_index(api_host):
     url = f"{api_host}/"
     resp = requests.get(url)
-    assert resp.status_code == 200, f"Status code inesperado: {resp.status_code}"
+    assert resp.status_code == 200, f"Status code unexpected: {resp.status_code}"
     data = resp.json()
-    assert "Bienvenido a la API de Grafos" in data.get("message", ""), \
-        "Mensaje de bienvenida no encontrado en /"
+    assert "Welcome to the Graph API" in data.get("message", ""), \
+        "Welcome message not found in /"
 
 def test_shortest_path(api_host):
     url = f"{api_host}/shortest-path"
     params = {"word1": "dog", "word2": "cat"}
     resp = requests.get(url, params=params)
-    # Puede ser 200 o 404 si no existe camino
-    assert resp.status_code in (200, 404), f"Status code inesperado: {resp.status_code}"
+    assert resp.status_code in (200, 404), f"Status code unexpected: {resp.status_code}"
 
 def test_all_paths(api_host):
     url = f"{api_host}/all-paths"
@@ -38,7 +30,6 @@ def test_all_paths(api_host):
     assert resp.status_code in (200, 404)
 
 def test_maximum_distance_between(api_host):
-    # Camino más largo entre dog y cat, limit=7
     url = f"{api_host}/maximum-distance"
     params = {"word1": "dog", "word2": "cat", "limit": 7}
     resp = requests.get(url, params=params)

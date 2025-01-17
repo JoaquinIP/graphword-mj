@@ -1,5 +1,3 @@
-# .github/workflows/ci.yml
-
 name: CI
 
 on:
@@ -16,7 +14,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
-    # 1. Configurar credenciales AWS
+    # 1. Configure AWS Credentials
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -25,7 +23,7 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: us-east-1
 
-    # 2. Instalar Terraform
+    # 2. Install Terraform
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v2
 
@@ -49,7 +47,7 @@ jobs:
       run: terraform apply -auto-approve
       working-directory: ./terraform
 
-    # 7. Capturar ec2_public_dns
+    # 7. Capture ec2_public_dns
     - name: Capture ec2_public_dns
       id: dns
       working-directory: ./terraform
@@ -82,7 +80,7 @@ jobs:
     - name: Print DNS
       run: echo "EC2 DNS = ${{ steps.dns.outputs.ec2url }}"
 
-    # 8. Instalar Python y dependencias
+    # 8. Install Python Dependencies
     - name: Install Python Dependencies
       run: |
         sudo apt-get update
@@ -92,16 +90,16 @@ jobs:
         pip3 install pytest requests
 
     - name: Wait for server to be fully up
-      run: sleep 60   # Esperar 1 minuto para dar tiempo a que el servidor arranque
+      run: sleep 90   # Wait 90 seconds to allow time for the server to boot
 
-    # 9. Ejecutar pytest contra la API real
+    # 9. Run pytest against the real API
     - name: Run Tests
       env:
         API_HOST: ${{ steps.dns.outputs.ec2url }}
       run: |
         pytest --maxfail=1 --disable-warnings -v
 
-    # 10. Terraform Destroy (para no dejar la infra encendida)
+    # 10. Terraform Destroy (so as not to leave the infrastructure on)
     - name: Terraform Destroy
       if: always()
       run: terraform destroy -auto-approve

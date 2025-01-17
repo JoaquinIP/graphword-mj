@@ -1,5 +1,3 @@
-# word_manager.py
-
 import os
 from typing import Dict, Set
 from word_sources.word_source import WordSource
@@ -9,17 +7,10 @@ class WordManager:
         self.word_source = word_source
 
     def process_words(self, data_lake_path: str, data_mart_path: str) -> Dict[int, int]:
-        """
-        1) Guarda los datos crudos en datalake/.
-        2) get_words() => {longitud: set(...)}, y guarda en datamart/ words_{n}.txt sin duplicados.
-        Retorna {n: num_palabras_nuevas} para cada longitud n.
-        """
         new_words_count = {}
 
-        # 1) Guardar data cruda
         self.word_source.save_raw_data(data_lake_path)
 
-        # 2) Obtener palabras y guardar en datamart
         words_by_length = self.word_source.get_words()
         if not os.path.isdir(data_mart_path):
             os.makedirs(data_mart_path)
